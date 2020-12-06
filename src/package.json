@@ -1,10 +1,9 @@
 {
-  "name": "healthbot-svcs",
-  "version": "0.5.5",
+  "name": "hydra-healthbot-svcs",
+  "version": "1.0.0",
   "private": true,
   "scripts": {
-    "start": "node healthbot-svcs.js",
-    "debug": "node --inspect --debug-brk healthbot-svcs"
+    "start": "node healthbot-svcs.js"
   },
   "engines": {
     "node": ">=12.0.0"

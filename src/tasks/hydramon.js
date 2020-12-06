@@ -1,5 +1,3 @@
-'use strict';
-
 const hydraExpress = require('hydra-express');
 const hydra = hydraExpress.getHydra();
 const taskr = require('../lib/taskr');
@@ -30,11 +28,11 @@ class HydraMonTask {
   */
   async run() {
     try {
-      let serviceList = await hydra.getServiceNodes();
-      let results = taskr.executeRules('hydramon', serviceList);
+      const serviceList = await hydra.getServiceNodes();
+      const results = taskr.executeRules('hydramon', serviceList);
       if (results && results.length > 0) {
-        let module = results[0].module;
-        let messages = [];
+        const module = results[0].module;
+        const messages = [];
         results.forEach((e) => {
           let exclude = false;
           this.config.silenceInSlack.forEach((serviceName) => {

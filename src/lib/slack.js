@@ -31,7 +31,7 @@ class Slack {
     text = text.trim();
     if (text.length > 1) {
       const payload = Utils.safeJSONStringify({
-        'username': 'health-bot',
+        'username': 'hydra-healthbot',
         'icon_emoji': ':nerd_face:',
         'text': text
       });

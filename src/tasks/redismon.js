@@ -1,5 +1,3 @@
-'use strict';
-
 const hydraExpress = require('hydra-express');
 const redis = require('redis');
 const taskr = require('../lib/taskr');
@@ -28,13 +26,13 @@ class RedisMonTask {
   * @return {undefined}
   */
   run() {
-    let redisClient = redis.createClient(this.config.hydra.redis.url);
+    const redisClient = redis.createClient(this.config.hydra.redis.url);
     redisClient.on('error', (err) => {
       throw err;
     });
 
     redisClient.info((err, reply) => {
-      let map = {};
+      const map = {};
       let lines;
 
       if (err) {
@@ -50,11 +48,11 @@ class RedisMonTask {
       lines = lines.split('\r');
       lines.forEach((line) => {
         if (line.indexOf(':') > -1) {
-          let keyval = line.split(':');
+          const keyval = line.split(':');
           map[keyval[0]] = keyval[1];
         }
       });
-      let info = {
+      const info = {
         version: map.redis_version,
         uptimeInSeconds: map.uptime_in_seconds,
         uptimeInDays: map.uptime_in_days,
@@ -66,9 +64,9 @@ class RedisMonTask {
         totalCommandsProcessed: map.total_commands_processed,
         totalPubSubChannels: map.pubsub_channels
       };
-      let results = taskr.executeRules('redismon', info);
+      const results = taskr.executeRules('redismon', info);
       if (results && results.length > 0) {
-        let messages = results.map((e) => `• ${e.message}\n`);
+        const messages = results.map((e) => `• ${e.message}\n`);
         if (messages) {
           dispatcher.send(`${messages.join(' ')}`);
         }
