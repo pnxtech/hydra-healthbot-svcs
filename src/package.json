@@ -1,0 +1,25 @@
+{
+  "name": "healthbot-svcs",
+  "version": "0.5.5",
+  "private": true,
+  "scripts": {
+    "start": "node healthbot-svcs.js",
+    "debug": "node --inspect --debug-brk healthbot-svcs"
+  },
+  "engines": {
+    "node": ">=12.0.0"
+  },
+  "dependencies": {
+    "cron": "1.8.2",
+    "hydra-express": "1.8.2",
+    "jspath": "0.4.0",
+    "moment": "2.29.1",
+    "redis": "3.0.2",
+    "request": "2.88.2",
+    "uuid": "8.3.1"
+  },
+  "devDependencies": {
+    "eslint": "7.15.0",
+    "eslint-config-google": "0.14.0"
+  }
+}
