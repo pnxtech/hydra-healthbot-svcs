@@ -1,5 +1,4 @@
 # healthbot-svcs
 Hydra Health Bot Service
 
-![](assets/hydra-healthbot-logo.png)
-
+<img src="assets/hydra-healthbot-logo.png" width="400px" />
