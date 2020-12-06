@@ -12,7 +12,7 @@ const main = async () => {
   try {
     const serviceInfo = await hydraExpress.init(config, config.hydra.serviceVersion, () => {
       hydraExpress.registerRoutes({
-        '/v1/health': require('./routes/health-v1-routes')
+        '/v1/healthbot': require('./routes/health-v1-routes')
       });
     });
 
