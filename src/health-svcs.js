@@ -5,9 +5,9 @@ const main = async () => {
   const hydraLogger = new HydraLogger();
   hydraExpress.use(hydraLogger);
 
+  const dispatcher = require('./lib/dispatcher');
   const taskr = require('./lib/taskr');
-  const slack = require('./lib/slack');
-  const config = require('./config.json');
+  const config = require('./config/config.json');
 
   try {
     const serviceInfo = await hydraExpress.init(config, config.hydra.serviceVersion, () => {
@@ -18,8 +18,8 @@ const main = async () => {
 
     console.log(`Started ${hydra.getServiceName()} (v.${hydra.getInstanceVersion()})`);
     console.log(serviceInfo);
-    slack.post(`Starting ${serviceInfo.serviceName} on ${serviceInfo.serviceIP}: ${serviceInfo.servicePort}`);
-    taskr.init(config.taskr);
+    dispatcher.init(config);
+    taskr.init(config);
   } catch (err) {
     const stack = err.stack;
     console.error(stack);

@@ -31,7 +31,10 @@ class Dispatcher {
   */
   init(config) {
     const DURATION = 60 * 60 * 1000; // 60 minutes
-    this.slack = new Slack(config);
+    this.useSlack = (config.slackWebHookUrl !== '') ? true : false;
+    if (this.useSlack) {
+      this.slack = new Slack(config);
+    }
     this.dontLogOk = config.dontLogOk;
 
     // periodic summary and cleanup
@@ -40,11 +43,11 @@ class Dispatcher {
       const totalMessages = Object.keys(this.messages).length;
       if (totalMessages > 0) {
         message = `I reported ${totalMessages} issue(s) in the past ${DURATION / 1000 / 60} minutes.`;
-        this.slack.post(message);
+        (this.useSlack && this.slack.post(message));
       } else {
         if (!this.dontLogOk) {
           message = this.okResponses[this.getRandomInt(0, this.okResponses.length)];
-          this.slack.post(message);
+          (this.useSlack && this.slack.post(message));
         }
       }
       this.messages = {};
@@ -61,7 +64,7 @@ class Dispatcher {
     const msgHash = Utils.stringHash(message);
     if (!this.messages[msgHash]) {
       this.messages[msgHash] = message;
-      this.slack.post(message);
+      (this.useSlack && this.slack.post(message));
     }
     hydraExpress.log('info', message);
   }

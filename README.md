@@ -21,3 +21,22 @@ Recommended release: `pnxtech/hydra-healthbot-svcs:1.0.0`
 ## Infrastructure requirements
 HealthBot is a Hydra microservice and so an accessible instance of Redis is required.
 
+## Configuration
+The supplied config/sample-config.json file contains the two provided tasks. The first step in configuring the this service for use is to update the timezone at the top of the file.
+
+```js
+{
+  "taskr": {
+    "timezone": "America/New_York",
+    "path": "../tasks",
+```
+
+> Note: the timezone required is for the location where this service will be running.
+
+For a list of supported timezones visit: https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+
+### Enabling Slack integration
+
+```js
+  "slackWebHookUrl": "https://hooks.slack.com/services/T0FAKE77D/B5FAKE5CZ/V7r6oUfFAKEL8yrygrfo6uY8",
+```

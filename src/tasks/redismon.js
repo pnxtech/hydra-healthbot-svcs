@@ -72,7 +72,7 @@ class RedisMonTask {
         }
       }
       redisClient.quit();
-      hydraExpress.appLogger.info(info);
+      hydraExpress.log('info', info);
     });
   }
 }

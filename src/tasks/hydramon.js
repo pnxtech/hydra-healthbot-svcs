@@ -2,7 +2,7 @@ const hydraExpress = require('hydra-express');
 const hydra = hydraExpress.getHydra();
 const taskr = require('../lib/taskr');
 const dispatcher = require('../lib/dispatcher');
-const request = require('request');
+const fetch = require('node-fetch');
 
 /**
 * @name HydraMonTask
@@ -46,11 +46,15 @@ class HydraMonTask {
         });
         if (messages.length > 0) {
           dispatcher.send(`${messages.join(' ')}`);
-          (module.trigger) && request.get(module.trigger);
+          try {
+            (module.trigger) && await fetch(module.trigger);
+          } catch (e) {
+            hydraExpress.log('error', `Unable to reach ${module.trigger}`);
+          }
         }
       }
     } catch (e) {
-      hydraExpress.appLogger.error(e);
+      hydraExpress.log('error', e);
     }
   }
 }

@@ -2,7 +2,7 @@
 
 const hydraExpress = require('hydra-express');
 const Utils = hydraExpress.getHydra().getUtilsHelper();
-const request = require('request');
+const fetch = require('node-fetch');
 
 /**
 * @name Slack
@@ -35,14 +35,14 @@ class Slack {
         'icon_emoji': ':nerd_face:',
         'text': text
       });
-      const options = {
+      fetch({
+        method: 'POST',
         headers: {
           'Content-type': 'application/json'
         },
         url: `${this.config.slackWebHookUrl}`,
         body: payload
-      };
-      request.post(options);
+      });
     }
   }
 }
