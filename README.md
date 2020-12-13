@@ -16,7 +16,7 @@ Two built-in tasks are provided, but others can be added.
 
 HealthBot is intended for use in its docker container form and deployed to a Docker Swarm or Kubernetes cluster. Available container images are hosted on [Docker Hub](https://hub.docker.com/repository/docker/pnxtech/hydra-healthbot-svcs).
 
-Recommended release: `pnxtech/hydra-healthbot-svcs:1.0.0`
+Recommended release: `pnxtech/hydra-healthbot-svcs:1.0.2`
 
 ## Infrastructure requirements
 HealthBot is a Hydra microservice and so an accessible instance of Redis is required.
